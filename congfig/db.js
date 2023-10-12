@@ -17,9 +17,16 @@ require("dotenv").config();
 
 // module.exports = { connection };
 const connection= async()=>{
-  await mongoose.connect(process.env.mongoDBUrl);
+  // await mongoose.connect(process.env.mongoDBUrl);
 
-  console.log("connection is done");
+  // console.log("connection is done");
+  try {
+    const conn = await mongoose.connect(process.env.mongoDBUrl);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
 }
 
 module.exports = {
