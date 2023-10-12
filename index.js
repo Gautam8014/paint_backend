@@ -1,15 +1,18 @@
 const express = require("express");
 const cors = require("cors");
-
+const { MongoClient } = require('mongodb');
 const {connection} = require("./congfig/db");
 const {userModel} = require("./models/User.model");
  
 
 const app = express();
-const PORT = process.env.PORT|| 8000;
+
 app.use(express.json());
 app.use(cors());
+const PORT = process.env.PORT || 3000
 
+const uri = process.env.mongoDBUrl;
+const client = new MongoClient(uri)
 
 app.get("/",(req,res) =>{
     res.send("Welcome to home");
@@ -106,21 +109,28 @@ app.delete("/gallery/:notesId", async (req, res) => {
     }
 });
 
-app.listen(PORT, async()=>{
+// app.listen(PORT, async()=>{
 
-   try {
-    await connection()
-    console.log("Connected to Mongo");
+//    try {
+//     await connection()
+//     console.log("Connected to Mongo");
     
-   } catch (error) {
-    console.log(error);
-    console.log("Error!!!!! Not Connect to MongoDB");
-   }
+//    } catch (error) {
+//     console.log(error);
+//     console.log("Error!!!!! Not Connect to MongoDB");
+//    }
 
 
 
     
 
+// });
+client.connect(err => {
+    if(err){ console.error(err); return false;}
+    // connection to mongo is successful, listen for requests
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
 });
 
 
