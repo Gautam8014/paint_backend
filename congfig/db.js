@@ -19,7 +19,7 @@ require("dotenv").config();
 const connection= async()=>{
   await mongoose.connect("mongodb+srv://gautam:9507254304@cluster0.cfldg6s.mongodb.net/paint?retryWrites=true&w=majority");
 
-  console.log("connection is done")
+  console.log("connection is done");
 }
 
 module.exports = {
