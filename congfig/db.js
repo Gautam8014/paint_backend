@@ -17,7 +17,7 @@ require("dotenv").config();
 
 // module.exports = { connection };
 const connection= async()=>{
-  await mongoose.connect("mongodb+srv://gautam:9507254304@cluster0.cfldg6s.mongodb.net/paint?retryWrites=true&w=majority");
+  await mongoose.connect(process.env.mongoDBUrl);
 
   console.log("connection is done");
 }
