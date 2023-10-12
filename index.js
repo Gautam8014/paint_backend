@@ -6,7 +6,7 @@ const {userModel} = require("./module/User.model");
  
 
 const app = express();
-const port = 8000;
+const PORT = process.env.PORT|| 6010;
 app.use(express.json());
 app.use(cors());
 
@@ -106,7 +106,7 @@ app.delete("/gallery/:notesId", async (req, res) => {
     }
 });
 
-app.listen(port, async()=>{
+app.listen(PORT, async()=>{
 
    try {
     await connection()
