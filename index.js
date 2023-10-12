@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const {connection} = require("./congfig/db");
-const {userModel} = require("./module/User.model");
+const {userModel} = require("./models/User.model");
  
 
 const app = express();
