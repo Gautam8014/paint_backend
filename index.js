@@ -6,7 +6,7 @@ const {userModel} = require("./models/User.model");
  
 
 const app = express();
-const PORT = process.env.PORT|| 6010;
+const PORT = process.env.PORT|| 8000;
 app.use(express.json());
 app.use(cors());
 
