@@ -2,10 +2,15 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const connection= async()=>{
-  await mongoose.connect(process.env.mongoDBUrl);
+  try {
+    await mongoose.connect(process.env.mongoDBUrl);
 
-  console.log("connection is done");
-
+    console.log("connection is done");
+  
+  } catch (error) {
+    console.log(error.message)
+  }
+ 
 }
 module.exports = {
     connection 
