@@ -8,7 +8,11 @@ const mongoose = require("mongoose");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+    cors({
+        origin: "*",
+    })
+);
 const PORT = process.env.PORT || 8000
 
 const uri = process.env.mongoDBUrl;
@@ -29,7 +33,7 @@ app.get("/gallery", async(req, res) =>{
         
     } catch (error) {
         console.log(error);
-        console.log("Error While loading Get Method");
+        console.log("Error While loading Get Method")
         
     }
     
@@ -105,7 +109,7 @@ app.delete("/gallery/:notesId", async (req, res) => {
         res.json({ message: "Note deleted successfully" });
     } catch (error) {
         console.error("Error:", error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Internal server error" })
     }
 });
 
@@ -125,5 +129,3 @@ app.listen(PORT, async()=>{
     
 
 });
-
-
